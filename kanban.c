@@ -33,15 +33,53 @@ void print_separator_row(int row) {
     cputsxy(0, row, "+-----------+-----------+-----------+");
 }
 
+// Full-width separator (single border spanning all lists)
+void print_full_separator_row(int row) {
+    cputsxy(0, row, "+---------------------------------------+");
+}
+
+// Board title centered across screen, colored green
+void print_board_title_row(int row) {
+    const char *title = "PROJECT SPACE TRAVEL";
+    int title_len = 20; // "PROJECT SPACE TRAVEL" length
+    int x = (SCREEN_WIDTH - title_len) / 2; // center horizontally (SCREEN_WIDTH is 40)
+    cputsxy(x, row, title);
+    set_color_direct(x, row, title_len, COLOR_GREEN);
+}
+
+// Swimlane row that spans the full width with borders and centered swimlane title in red
+void print_swimlane_row(int row) {
+    const char *swim = "TEAM RED";
+    int swim_len = 8; // "TEAM RED" length
+    // Inner width between the two '|' is 37 (columns 1..37)
+    int inner_start = 1;
+    int inner_width = 37;
+    int x = inner_start + (inner_width - swim_len) / 2;
+
+    // Draw vertical borders at left and right of the full-width swimlane (columns 0 and 38)
+    cputsxy(0, row, "|");
+    cputsxy(38, row, "|");
+
+    cputsxy(x, row, swim);
+    set_color_direct(x, row, swim_len, COLOR_RED);
+}
+
 void print_header_row(int row) {
+    // Draw vertical separators / borders around the list titles so titles have left/right borders
+    cputsxy(1, row, "|"); 
+    cputsxy(12, row, "|"); 
+    cputsxy(24, row, "|"); 
+    cputsxy(36, row, "|"); 
+
     // 1. Print the texts (default color)
     cputsxy(2, row, "TASKS");
-    cputsxy(14, row, "IN PROGRESS");
+    // Move "IN PROGRESS" one character left (was 14 -> now 13)
+    cputsxy(13, row, "IN PROGRESS");
     cputsxy(26, row, "DONE");
     
     // 2. Set colors in the Color RAM over the text
     set_color_direct(2, row, 8, COLOR_CYAN); 
-    set_color_direct(14, row, 10, COLOR_CYAN); 
+    set_color_direct(13, row, 11, COLOR_CYAN); 
     set_color_direct(26, row, 4, COLOR_CYAN); 
 }
 
@@ -75,9 +113,15 @@ int main(void) {
     textcolor(COLOR_WHITE);
 
     // Note: current_row is now defined globally, so it STARTS at row 1.
-    // We don't define it here anymore.
 
-    // Header area
+    // Top full border and board title + swimlane
+    print_full_separator_row(current_row++);
+    print_board_title_row(current_row++);
+    print_full_separator_row(current_row++);
+    print_swimlane_row(current_row++);
+    print_full_separator_row(current_row++);
+
+    // Header area (list titles with borders between them)
     print_separator_row(current_row++);
     print_header_row(current_row++);
     print_separator_row(current_row++);
