@@ -42,7 +42,7 @@ storage such as an SD2IEC is an intended target, but has not been tested on phys
 hardware. **Datasette/tape, REU, cartridge flash, and direct SD-card access are not
 implemented.** In VICE, attach a writable D64 to unit 8. Data goes into that image.
 
-## Language / Kieli
+## Language
 
 Press **F** for settings, then **K** to switch between **ENGLISH** and **SUOMI**.
 The settings screen changes language immediately. Press **RUN-STOP** (host: Esc)
@@ -50,11 +50,11 @@ to return to the board, then **S** to save the selection with all project data.
 Startup and manual load restore the language of the selected snapshot. A new
 project and a legacy version-1 snapshot default to English.
 
-**Suomeksi:** Avaa asetukset painamalla **F**. Vaihda kieleksi **SUOMI** painamalla
-**K**. Palaa tauluun **RUN-STOP**-näppäimellä (tietokoneella Esc) ja tallenna **S**.
-Valinta palautuu seuraavalla latauksella. Samalla tavalla voit vaihtaa englantiin.
-Pikanäppäimet ovat samat kummallakin kielellä: N = uusi, E = muokkaa, X = poista,
-S = tallenna ja L = lataa.
+**Finnish UI:** Open settings with **F**, then press **K** to select **SUOMI**.
+Return to the board with **RUN-STOP** (Esc on a computer) and save with **S**.
+The selection is restored on the next load. Use the same steps to switch back
+to English. Shortcuts are the same in both languages: N = new, E = edit,
+X = delete, S = save and L = load.
 
 The translation covers menus, prompts, help and error messages. Board/card titles
 and descriptions are user content and are not translated when switching language.
