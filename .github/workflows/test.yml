@@ -1,0 +1,13 @@
+name: Build and test
+on: [push, pull_request]
+jobs:
+  c89-and-c64:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y cc65
+      - run: make test host all
+      - run: python3 tools/check_memory.py
+      - name: Address and undefined behavior checks
+        run: |
+          make -B test CFLAGS='-std=c89 -pedantic -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer'

@@ -1,2 +1,8 @@
+/build/
 *.o
-/kanban
+/KANBAN-A
+/KANBAN-B
+/linux/kanban
+*.core
+core
+__pycache__/
